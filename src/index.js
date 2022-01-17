@@ -8,12 +8,13 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 // Customized styles
 import "./index.css"
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { applyMiddleware, createStore } from 'redux';
 import reducers from './reducers';
+import thunk from 'redux-thunk';
 
-
+const store = createStore(reducers, applyMiddleware(thunk))
 ReactDOM.render(
-  <Provider store={createStore(reducers)}>
+  <Provider store={store}>
     <App />
   </Provider>,
   document.getElementById('root'));
